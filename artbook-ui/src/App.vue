@@ -1,5 +1,5 @@
 <script setup>
-const healthMessage = await fetch(`https://artbook-service:8080/api/v1/status/health`)
+const healthMessage = await fetch(`http://artbook-service:8080/api/v1/status/health`)
   .then((res) => res.json())
   .then((data) => data.message)
   .catch(() => 'Service Unavailable')
