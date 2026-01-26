@@ -5,7 +5,7 @@
 
       <div class="image-wrapper">
         <img :src="image.imageUrl" :alt="image.title" class="main-image" />
-        <button @click="toggleLike" class="like-button" :class="{ liked: image.liked }">
+        <button @click="putLike" class="like-button" :class="{ liked: image.liked }">
           ♥ {{ image.likes }}
         </button>
       </div>
@@ -34,29 +34,18 @@ const image = ref(null)
 
 onMounted(async () => {
   const imageId = route.params.imageId
-  // Placeholder: fetch image data from backend
-  // const response = await fetch(`/api/images/${imageId}`)
-  // image.value = await response.json()
 
-  image.value = {
-    id: imageId,
-    title: 'Sample Image',
-    imageUrl: 'https://via.placeholder.com/600x400',
-    description: 'This is a sample image description.',
-    tags: [
-      { key: 'artist', value: 'John Doe' },
-      { key: 'style', value: 'Abstract' },
-    ],
-    likes: 42,
-    liked: false,
-  }
+  // fetch image data from backend
+  const response = await fetch(`/api/images/${imageId}`)
+  image.value = await response.json()
 })
 
-const toggleLike = () => {
+const putLike = () => {
   if (image.value) {
-    image.value.liked = !image.value.liked
-    image.value.likes += image.value.liked ? 1 : -1
-    // Placeholder: POST to /api/images/{imageId}/like
+    // POST to /api/images/{imageId}/like
+    const response = fetch('/api/images/' + image.value.id + '/like', {
+      method: 'PUT',
+    })
   }
 }
 </script>

@@ -73,7 +73,6 @@ const form = ref({
   file: null,
 })
 const selectedFileName = ref('')
-const fileInput = ref(null)
 const successMessage = ref('')
 
 const addTag = () => {
@@ -108,20 +107,17 @@ const handleSubmit = async () => {
   })
 
   try {
-    // Placeholder: POST to /api/images
-    // const response = await fetch('/api/images', {
-    //   method: 'POST',
-    //   body: formData
-    // })
-    // const data = await response.json()
-
-    // Mock response for now
-    const imageId = 'image-' + Date.now()
+    // POST to /api/images
+    const response = await fetch('/api/images', {
+      method: 'POST',
+      body: formData,
+    })
+    const data = await response.json()
 
     // Redirect to viewer page
     router.push({
       name: 'viewer',
-      params: { imageId },
+      params: { imageId: data.imageId },
     })
 
     // Show success message (would need to pass it to viewer page in real implementation)

@@ -116,9 +116,6 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
 
 const filters = ref({
   titleSearch: '',
@@ -181,38 +178,20 @@ const goToPage = (page) => {
 }
 
 const loadImages = async () => {
-  // Placeholder: fetch images from backend
-  // const params = new URLSearchParams({
-  //   titleSearch: filters.value.titleSearch,
-  //   tags: filters.value.selectedTags.join(','),
-  //   startDate: filters.value.startDate,
-  //   endDate: filters.value.endDate,
-  //   page: pagination.value.currentPage,
-  //   pageSize: pagination.value.pageSize,
-  //   sortBy: pagination.value.sortBy,
-  //   sortOrder: pagination.value.sortOrder
-  // })
-  // const response = await fetch(`/api/images?${params}`)
-  // const data = await response.json()
-  // images.value = data.items
-  // totalResults.value = data.total
-
-  // Mock data for now
-  const mockImages = [
-    { id: '1', title: 'Abstract Art 1', thumbnailUrl: 'https://via.placeholder.com/128' },
-    { id: '2', title: 'Abstract Art 2', thumbnailUrl: 'https://via.placeholder.com/128' },
-    { id: '3', title: 'Abstract Art 3', thumbnailUrl: 'https://via.placeholder.com/128' },
-    { id: '4', title: 'Landscape 1', thumbnailUrl: 'https://via.placeholder.com/128' },
-    { id: '5', title: 'Landscape 2', thumbnailUrl: 'https://via.placeholder.com/128' },
-    { id: '6', title: 'Portrait 1', thumbnailUrl: 'https://via.placeholder.com/128' },
-    { id: '7', title: 'Portrait 2', thumbnailUrl: 'https://via.placeholder.com/128' },
-    { id: '8', title: 'Still Life 1', thumbnailUrl: 'https://via.placeholder.com/128' },
-    { id: '9', title: 'Still Life 2', thumbnailUrl: 'https://via.placeholder.com/128' },
-    { id: '10', title: 'Nature 1', thumbnailUrl: 'https://via.placeholder.com/128' },
-  ]
-
-  images.value = mockImages
-  totalResults.value = 127
+  const params = new URLSearchParams({
+    titleSearch: filters.value.titleSearch,
+    tags: filters.value.selectedTags.join(','),
+    startDate: filters.value.startDate,
+    endDate: filters.value.endDate,
+    page: pagination.value.currentPage,
+    pageSize: pagination.value.pageSize,
+    sortBy: pagination.value.sortBy,
+    sortOrder: pagination.value.sortOrder,
+  })
+  const response = await fetch(`/api/images?${params}`)
+  const data = await response.json()
+  images.value = data.items
+  totalResults.value = data.total
 }
 
 onMounted(() => {
