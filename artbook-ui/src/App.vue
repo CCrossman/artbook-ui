@@ -4,7 +4,7 @@
   <div id="app">
     <nav class="navbar">
       <div class="navbar-container">
-        <router-link to="/gallery" class="navbar-brand">Artbook</router-link>
+        <router-link to="/login" class="navbar-brand">Artbook</router-link>
         <ul class="navbar-menu">
           <li>
             <router-link to="/gallery" active-class="active">Gallery</router-link>

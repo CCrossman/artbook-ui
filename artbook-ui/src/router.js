@@ -3,7 +3,6 @@ import LoginPage from './pages/LoginPage.vue'
 import ViewerPage from './pages/ViewerPage.vue'
 import UploadPage from './pages/UploadPage.vue'
 import GalleryPage from './pages/GalleryPage.vue'
-import { getCurrentUser } from 'aws-amplify/auth'
 
 const routes = [
   {

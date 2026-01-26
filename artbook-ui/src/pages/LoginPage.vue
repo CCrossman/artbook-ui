@@ -1,15 +1,13 @@
-<script setup>
-import { Authenticator } from '@aws-amplify/ui-vue'
-import '@aws-amplify/ui-vue/styles.css'
-</script>
+<script setup></script>
 
 <template>
-  <authenticator>
+  <!-- <authenticator>
     <template v-slot="{ user: signOut }">
       <h1>Authenticated</h1>
       <button @click="signOut">Sign Out</button>
     </template>
-  </authenticator>
+  </authenticator> -->
+  <div>Login Goes Here</div>
 </template>
 
 <style></style>
