@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+const serviceHost = process.env.SERVICE_HOST
+const healthMessage = fetch(`${serviceHost}/api/v1/status/health`)
+  .then((res) => res.json())
+  .then((data) => data.message)
+  .catch(() => 'Service Unavailable')
+
+console.log('Health Message:', healthMessage)
+</script>
 
 <template>
   <div id="app">
