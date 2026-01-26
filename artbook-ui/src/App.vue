@@ -1,14 +1,4 @@
-<script setup>
-const serviceHost = import.meta.env.SERVICE_HOST || 'http://localhost:3000'
-
-const healthMessage = await fetch(`${serviceHost}/api/v1/status/health`)
-  .then((res) => res.json())
-  .then((data) => data.message)
-  .catch(() => 'Service Unavailable')
-  .finally(() => {
-    console.log('Health Message:', healthMessage)
-  })
-</script>
+<script setup></script>
 
 <template>
   <div id="app">
