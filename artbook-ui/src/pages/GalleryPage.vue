@@ -189,9 +189,10 @@ const loadImages = async () => {
     sortOrder: pagination.value.sortOrder,
   })
   const response = await fetch(`/api/images?${params}`)
-  const data = await response.json()
-  images.value = data.items
-  totalResults.value = data.total
+  const data = await response?.json()
+
+  images.value = data?.items || []
+  totalResults.value = data?.total || 0
 }
 
 onMounted(() => {
