@@ -1,5 +1,5 @@
 <script setup>
-const serviceHost = import.meta.env.SERVICE_HOST || 'http://localhost:3000'
+const serviceHost = process.env.SERVICE_HOST || 'http://localhost:3000'
 
 const healthMessage = await fetch(`${serviceHost}/api/v1/status/health`)
   .then((res) => res.json())
