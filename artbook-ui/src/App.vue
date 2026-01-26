@@ -1,5 +1,7 @@
 <script setup>
-const healthMessage = await fetch(`http://artbook-service:8080/api/v1/status/health`)
+const serviceHost = import.meta.env.SERVICE_HOST || 'http://localhost:3000'
+
+const healthMessage = await fetch(`${serviceHost}/api/v1/status/health`)
   .then((res) => res.json())
   .then((data) => data.message)
   .catch(() => 'Service Unavailable')
