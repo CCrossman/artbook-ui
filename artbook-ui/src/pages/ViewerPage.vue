@@ -31,19 +31,20 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const image = ref(null)
+const { fetchApi } = useApi()
 
 onMounted(async () => {
   const imageId = route.params.imageId
 
   // fetch image data from backend
-  const response = await fetch(`/api/images/${imageId}`)
+  const response = await fetchApi(`/api/images/${imageId}`)
   image.value = await response.json()
 })
 
 const putLike = () => {
   if (image.value) {
     // POST to /api/images/{imageId}/like
-    const response = fetch('/api/images/' + image.value.id + '/like', {
+    const response = fetchApi('/api/images/' + image.value.id + '/like', {
       method: 'PUT',
     })
   }
