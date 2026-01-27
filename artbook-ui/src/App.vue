@@ -1,7 +1,8 @@
 <script setup>
-const serviceHost = process.env.SERVICE_HOST || 'http://localhost:3000'
+// This string is replaced literally during the build process
+const apiServiceUrl = import.meta.env.VITE_SERVICE_URL;
 
-const healthMessage = await fetch(`${serviceHost}/api/v1/status/health`)
+const healthMessage = await fetch(`${apiServiceUrl}/api/v1/status/health`)
   .then((res) => res.json())
   .then((data) => data.message)
   .catch(() => 'Service Unavailable')
