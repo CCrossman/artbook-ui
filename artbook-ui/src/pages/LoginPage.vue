@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useApi } from '@/composables/useApi'
 
+const { fetchApi } = useApi()
 const router = useRouter()
 const email = ref('')
 const password = ref('')
@@ -18,7 +20,7 @@ const handleLogin = async () => {
   isLoading.value = true
 
   try {
-    const response = await fetch('/api/credentials/signin', {
+    const response = await fetchApi('/api/credentials/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -65,7 +67,7 @@ const handleResetSubmit = async () => {
   isResetting.value = true
 
   try {
-    const response = await fetch('/api/credentials/reset', {
+    const response = await fetchApi('/api/credentials/reset', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

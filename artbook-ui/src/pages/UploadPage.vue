@@ -64,7 +64,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useApi } from '@/composables/useApi'
 
+const { fetchApi } = useApi()
 const router = useRouter()
 const form = ref({
   title: '',
@@ -108,7 +110,7 @@ const handleSubmit = async () => {
 
   try {
     // POST to /api/images
-    const response = await fetch('/api/images', {
+    const response = await fetchApi('/api/images', {
       method: 'POST',
       body: formData,
     })
