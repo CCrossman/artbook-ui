@@ -2,7 +2,6 @@
 // This string is replaced literally during the build process
 const apiServiceUrl = import.meta.env.VITE_SERVICE_URL;
 
-<<<<<<< Updated upstream
 const healthMessage = await fetch(`${apiServiceUrl}/api/v1/status/health`)
   .then((res) => res.json())
   .then((data) => data.message)
@@ -10,10 +9,6 @@ const healthMessage = await fetch(`${apiServiceUrl}/api/v1/status/health`)
   .finally(() => {
     console.log('Health Message:', healthMessage)
   })
-=======
-const apiPath = `${apiServiceUrl}/api/v1/status/health`
-console.log("apiPath: " + apiPath)
->>>>>>> Stashed changes
 </script>
 
 <template>
