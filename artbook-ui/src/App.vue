@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+const serviceUrl = import.meta.env.VITE_SERVICE_URL
+console.log("serviceUrl: " + serviceUrl)
+</script>
 
 <template>
   <div id="app">
