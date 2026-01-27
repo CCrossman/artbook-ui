@@ -1,14 +1,11 @@
 <script setup>
 // This string is replaced literally during the build process
-const apiServiceUrl = import.meta.env.VITE_SERVICE_URL;
+const apiServiceUrl = import.meta.env.VITE_SERVICE_URL
+console.log("apiServiceUrl: " + apiServiceUrl)
 
-const healthMessage = await fetch(`${apiServiceUrl}/api/v1/status/health`)
-  .then((res) => res.json())
-  .then((data) => data.message)
-  .catch(() => 'Service Unavailable')
-  .finally(() => {
-    console.log('Health Message:', healthMessage)
-  })
+const apiUrl = `${apiServiceUrl}/api/v1/status/health`
+console.log("apiUrl: " + apiUrl)
+
 </script>
 
 <template>
