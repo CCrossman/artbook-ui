@@ -1,15 +1,4 @@
-<script setup>
-// This string is replaced literally during the build process
-const apiServiceUrl = import.meta.env.VITE_SERVICE_URL;
-
-const healthMessage = await fetch(`${apiServiceUrl}/api/v1/status/health`)
-  .then((res) => res.json())
-  .then((data) => data.message)
-  .catch(() => 'Service Unavailable')
-  .finally(() => {
-    console.log('Health Message:', healthMessage)
-  })
-</script>
+<script setup></script>
 
 <template>
   <div id="app">
