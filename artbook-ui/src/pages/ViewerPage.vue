@@ -28,6 +28,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useApi } from '@/composables/useApi'
 
 const route = useRoute()
 const image = ref(null)

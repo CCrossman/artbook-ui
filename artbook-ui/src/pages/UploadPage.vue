@@ -64,6 +64,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useApi } from '@/composables/useApi'
 
 const { fetchApi } = useApi()
 const router = useRouter()
