@@ -45,7 +45,7 @@ onMounted(async () => {
 const putLike = () => {
   if (image.value) {
     // POST to /api/images/{imageId}/like
-    const response = fetchApi('/api/v1/images/' + image.value.id + '/like', {
+    const response = fetchApi('/api/v1/images/' + image.value.imageId + '/like', {
       method: 'PUT',
     })
   }
