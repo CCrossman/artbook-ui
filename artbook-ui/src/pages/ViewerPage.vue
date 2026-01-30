@@ -38,14 +38,14 @@ onMounted(async () => {
   const imageId = route.params.imageId
 
   // fetch image data from backend
-  const response = await fetchApi(`/api/images/${imageId}`)
+  const response = await fetchApi(`/api/v1/images/${imageId}`)
   image.value = await response.json()
 })
 
 const putLike = () => {
   if (image.value) {
     // POST to /api/images/{imageId}/like
-    const response = fetchApi('/api/images/' + image.value.imageId + '/like', {
+    const response = fetchApi('/api/v1/images/' + image.value.imageId + '/like', {
       method: 'PUT',
     })
   }
