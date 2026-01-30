@@ -191,7 +191,7 @@ const loadImages = async () => {
     sortBy: pagination.value.sortBy,
     sortOrder: pagination.value.sortOrder,
   })
-  const response = await fetchApi(`/api/images?${params}`)
+  const response = await fetchApi(`/api/v1/images?${params}`)
   const data = await response?.json()
 
   images.value = data?.items || []

@@ -20,7 +20,7 @@ const handleLogin = async () => {
   isLoading.value = true
 
   try {
-    const response = await fetchApi('/api/credentials/signin', {
+    const response = await fetchApi('/api/v1/credentials/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ const handleResetSubmit = async () => {
   isResetting.value = true
 
   try {
-    const response = await fetchApi('/api/credentials/reset', {
+    const response = await fetchApi('/api/v1/credentials/reset', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

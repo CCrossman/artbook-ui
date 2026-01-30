@@ -109,8 +109,8 @@ const handleSubmit = async () => {
   })
 
   try {
-    // POST to /api/images
-    const response = await fetchApi('/api/images', {
+    // POST to /api/v1/images
+    const response = await fetchApi('/api/v1/images', {
       method: 'POST',
       body: formData,
     })
