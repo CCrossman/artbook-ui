@@ -99,27 +99,22 @@ const handleSubmit = async () => {
     return
   }
 
-  // Convert file to base64
-  const fileContent = await form.value.file.text()
-  const base64Content = btoa(fileContent)
-
-  // Use JSON instead of FormData
-  const jsonBody = {
-    title: form.value.title,
-    description: form.value.description,
-    image: base64Content, // base64 encoded file content
-    filename: form.value.file.name, // include filename if needed
-    tags: form.value.tags,
-  }
+  // Create FormData for multipart/form-data upload (efficient for large files)
+  const formData = new FormData()
+  formData.append('title', form.value.title)
+  formData.append('description', form.value.description)
+  formData.append('image', form.value.file)
+  form.value.tags.forEach((tag, index) => {
+    formData.append(`tags[${index}][key]`, tag.key)
+    formData.append(`tags[${index}][value]`, tag.value)
+  })
 
   try {
-    // POST to /api/v1/images
+    // POST to /api/v1/images with multipart/form-data
     const response = await fetchApi('/api/v1/images', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(jsonBody),
+      body: formData,
+      // Don't set Content-Type header - browser will set it automatically with correct boundary
     })
     const data = await response.json()
 
