@@ -182,7 +182,7 @@ const goToPage = (page) => {
 
 const loadImages = async () => {
   const params = new URLSearchParams({
-    titleSearch: filters.value.titleSearch,
+    title: filters.value.titleSearch,
     tags: filters.value.selectedTags.join(','),
     startDate: filters.value.startDate,
     endDate: filters.value.endDate,
@@ -195,7 +195,7 @@ const loadImages = async () => {
   const data = await response?.json()
 
   images.value = data?.items || []
-  totalResults.value = data?.total || 0
+  totalResults.value = data?.totalCount || 0
 }
 
 onMounted(() => {

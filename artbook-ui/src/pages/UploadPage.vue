@@ -99,20 +99,27 @@ const handleSubmit = async () => {
     return
   }
 
-  const formData = new FormData()
-  formData.append('title', form.value.title)
-  formData.append('description', form.value.description)
-  formData.append('image', form.value.file)
-  form.value.tags.forEach((tag, index) => {
-    formData.append(`tags[${index}][key]`, tag.key)
-    formData.append(`tags[${index}][value]`, tag.value)
-  })
+  // Convert file to base64
+  const fileContent = await form.value.file.text()
+  const base64Content = btoa(fileContent)
+
+  // Use JSON instead of FormData
+  const jsonBody = {
+    title: form.value.title,
+    description: form.value.description,
+    image: base64Content, // base64 encoded file content
+    filename: form.value.file.name, // include filename if needed
+    tags: form.value.tags,
+  }
 
   try {
     // POST to /api/v1/images
     const response = await fetchApi('/api/v1/images', {
       method: 'POST',
-      body: formData,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(jsonBody),
     })
     const data = await response.json()
 
