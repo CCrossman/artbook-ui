@@ -4,11 +4,7 @@
       <h1>{{ image.title }}</h1>
 
       <div class="image-wrapper">
-        <img
-          src="data:image/{{ image.extension }};base64,{{ image.encodedData }}"
-          :alt="image.title"
-          class="main-image"
-        />
+        <img src="image.imageUrl" :alt="image.title" class="main-image" />
         <button @click="putLike" class="like-button" :class="{ liked: image.liked }">
           ♥ {{ image.likes }}
         </button>
@@ -36,13 +32,14 @@ import { useApi } from '@/composables/useApi'
 
 const route = useRoute()
 const image = ref(null)
-const { fetchApi } = useApi()
+const { fetchApi, fetchImage } = useApi()
 
 onMounted(async () => {
   const imageId = route.params.imageId
 
   // fetch image data from backend
-  const response = await fetchApi(`/api/v1/images/${imageId}`)
+  // TODO: use 'full' if permitted, 'preview' otherwise
+  const response = await fetchImage(imageId, 'full')
   image.value = await response.json()
 })
 
