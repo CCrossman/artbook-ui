@@ -4,7 +4,7 @@
       <h1>{{ image.title }}</h1>
 
       <div class="image-wrapper">
-        <img src="image.imageUrl" :alt="image.title" class="main-image" />
+        <img :src="image.imageUrl" :alt="image.title" class="main-image" />
         <button @click="putLike" class="like-button" :class="{ liked: image.liked }">
           ♥ {{ image.likes }}
         </button>
