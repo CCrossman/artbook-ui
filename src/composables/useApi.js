@@ -9,7 +9,7 @@ export function useApi() {
   }
 
   const fetchImages = async (params) => {
-    const url = `${daoBaseUrl}/api/v1/image?${params.toString()}`
+    const url = `${daoBaseUrl}/api/v1/images?${params.toString()}`
     // console.log("fetchImages with: ", url);
     return fetch(url)
   }
