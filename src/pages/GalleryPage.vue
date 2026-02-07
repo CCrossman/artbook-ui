@@ -118,7 +118,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useApi } from '@/composables/useApi'
 
-const { fetchApi } = useApi()
+const { fetchApi, fetchImages } = useApi()
 
 const filters = ref({
   titleSearch: '',
@@ -191,7 +191,7 @@ const loadImages = async () => {
     sortBy: pagination.value.sortBy,
     sortOrder: pagination.value.sortOrder,
   })
-  const response = await fetchApi(`/api/v1/images?${params}`)
+  const response = await fetchImages(params)
   const data = await response?.json()
 
   images.value = data?.items || []
