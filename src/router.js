@@ -7,7 +7,7 @@ import GalleryPage from './pages/GalleryPage.vue'
 const routes = [
   {
     path: '/',
-    redirect: '/gallery',
+    redirect: '/login',
   },
   {
     path: '/login',
