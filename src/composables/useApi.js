@@ -4,11 +4,13 @@ export function useApi() {
 
   const fetchApi = async (endpoint, options = {}) => {
     const url = `${baseUrl}${endpoint}`
+    console.log("fetchApi with: ", url, options);
     return fetch(url, options)
   }
 
   const fetchImage = async (imageId, imageType) => {
     const url = `${daoBaseUrl}/api/v1/images/${imageId}/${imageType}`
+    console.log("fetchImage with: ", url, options);
     return fetch(url)
   }
 
