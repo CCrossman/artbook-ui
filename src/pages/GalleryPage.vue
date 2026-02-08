@@ -118,7 +118,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useApi } from '@/composables/useApi'
 
-const { fetchApi, fetchImages } = useApi()
+const { fetchImages } = useApi()
 
 const filters = ref({
   titleSearch: '',
