@@ -62,12 +62,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useApi } from '@/composables/useApi'
+import useJwt from '@/composables/useJwt'
 
 const { fetchApi } = useApi()
 const router = useRouter()
+const { hasAuthority } = useJwt()
+
+onMounted(() => {
+  if (!hasAuthority('use_image_upload')) {
+    // Not authenticated or not authorized -> redirect to login
+    router.replace({ name: 'login' })
+  }
+})
 const form = ref({
   title: '',
   description: '',

@@ -2,8 +2,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useApi } from '@/composables/useApi'
+import useJwt from '@/composables/useJwt'
 
 const { fetchApi } = useApi()
+const { setToken } = useJwt()
 const router = useRouter()
 const email = ref('')
 const password = ref('')
@@ -41,7 +43,7 @@ const handleLogin = async () => {
 
     // Store token if provided
     if (data.token) {
-      localStorage.setItem('authToken', data.token)
+      setToken(data.token)
     }
 
     // Redirect to gallery
