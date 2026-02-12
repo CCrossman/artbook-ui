@@ -69,10 +69,10 @@ import useJwt from '@/composables/useJwt'
 
 const { fetchApi } = useApi()
 const router = useRouter()
-const { hasAuthority } = useJwt()
+const { hasPermission } = useJwt()
 
 onMounted(() => {
-  if (!hasAuthority('use_image_upload')) {
+  if (!hasPermission('use_image_upload')) {
     // Not authenticated or not authorized -> redirect to login
     router.replace({ name: 'login' })
   }
