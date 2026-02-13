@@ -48,7 +48,8 @@ export function useJwt() {
     if (!payload) return []
 
     if (payload.permissions) {
-        return Array.isArray(payload.permissions) ? payload.permissions : [payload.permissions]
+        const arr = Array.isArray(payload.permissions) ? payload.permissions : [payload.permissions]
+        return arr.map(o => o.authority)
     }
     return []
   }
