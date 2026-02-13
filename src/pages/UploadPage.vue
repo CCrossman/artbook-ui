@@ -84,7 +84,7 @@ onMounted(checkAuth)
 // run every time the route changes (but the component is reused)
 onBeforeRouteUpdate((to, from, next) => {
   checkAuth()
-  //next()
+  next()
 })
 
 const form = ref({
