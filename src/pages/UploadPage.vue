@@ -63,7 +63,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { onBeforeRouteUpdate, useRouter } from 'vue-router'
 import { useApi } from '@/composables/useApi'
 import useJwt from '@/composables/useJwt'
 
@@ -71,12 +71,22 @@ const { fetchApi } = useApi()
 const router = useRouter()
 const { hasPermission } = useJwt()
 
-onMounted(() => {
+function checkAuth() {
   if (!hasPermission('use_image_upload')) {
     // Not authenticated or not authorized -> redirect to login
     router.replace({ name: 'login' })
   }
+}
+
+// run on first mount
+onMounted(checkAuth)
+
+// run every time the route changes (but the component is reused)
+onBeforeRouteUpdate((to, from, next) => {
+  checkAuth()
+  //next()
 })
+
 const form = ref({
   title: '',
   description: '',
