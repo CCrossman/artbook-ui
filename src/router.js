@@ -23,7 +23,6 @@ const routes = [
     path: '/upload',
     component: UploadPage,
     name: 'upload',
-    meta: { requiresAuth: true },
   },
   {
     path: '/viewer/:imageId',
@@ -35,19 +34,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-})
-
-router.beforeEach(async (to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    try {
-      await getCurrentUser()
-      next()
-    } catch (err) {
-      next('/login')
-    }
-  } else {
-    next()
-  }
 })
 
 export default router

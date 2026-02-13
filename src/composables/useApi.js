@@ -2,7 +2,6 @@ import { useRouter } from 'vue-router'
 
 export function useApi() {
   const baseUrl = import.meta.env.VITE_SERVICE_URL || ''
-  const daoBaseUrl = import.meta.env.VITE_DAO_HOST || ''
   const router = useRouter()
 
   const includeBearerToken = (options) => {
@@ -32,14 +31,14 @@ export function useApi() {
 
   const fetchImages = async (params) => {
     const opts = includeBearerToken({})
-    const url = `${daoBaseUrl}/api/v1/images?${params.toString()}`
+    const url = `${baseUrl}/api/v1/images?${params.toString()}`
     // console.log("fetchImages with: ", url);
     return fetchAndClearToken(url, opts)
   }
 
   const fetchImage = async (imageId, imageType) => {
     const opts = includeBearerToken({})
-    const url = `${daoBaseUrl}/api/v1/images/${imageId}/${imageType}`
+    const url = `${baseUrl}/api/v1/images/${imageId}/${imageType}`
     // console.log("fetchImage with: ", url, options);
     return fetchAndClearToken(url, opts)
   }
