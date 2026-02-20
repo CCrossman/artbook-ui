@@ -41,7 +41,26 @@ export function useJwt() {
 
   function getPayload() {
     const t = getToken()
-    return parseJwt(t)
+    const jwt = parseJwt(t)
+
+    if (jwt) {
+      const now = Math.floor(Date.now() / 1000)
+
+      // check if the token is legal
+      if (!jwt.iat || (jwt.iat > now)) {
+        console.warn('Token issue date is not valid')
+        setToken(null)
+        return null
+      }
+
+      // check if the token is expired
+      if (!jwt.exp || (jwt.exp < now)) {
+        console.warn('Token has expired')
+        setToken(null)
+        return null
+      }
+    }
+    return jwt
   }
 
   function getPermissions(payload) {

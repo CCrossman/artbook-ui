@@ -83,6 +83,7 @@ onMounted(checkAuth)
 
 // run every time the route changes (but the component is reused)
 onBeforeRouteUpdate((to, from, next) => {
+  console.log("Checking auth on route change... to=" + to.fullPath + " from=" + from.fullPath)
   checkAuth()
   next()
 })
